@@ -9,8 +9,8 @@ Window::Window(const char* title, int x, int y, int w, int h) {
     if (this->m_Renderer == NULL) {
         std::cout << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
     }
-    this->m_Width = w;
-    this->m_Height = h;
+    this->m_Width = w / 3;
+    this->m_Height = h / 3;
 }
 Window::~Window() {
     SDL_DestroyRenderer(this->m_Renderer);
@@ -23,12 +23,14 @@ void Window::clear() {
 void Window::update(bool **matrix) {
     for (int i = 0; i < this->m_Height; i++) {
         for (int j = 0; j < this->m_Width; j++) {
+            // draw 3 * 3 square
             if (matrix[i][j]) {
-                SDL_SetRenderDrawColor(this->m_Renderer, 0x00, 0x00, 0x00, 0xFF);
+                SDL_SetRenderDrawColor(this->m_Renderer, 0, 0, 0, 255);
             } else {
-                SDL_SetRenderDrawColor(this->m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+                SDL_SetRenderDrawColor(this->m_Renderer, 255, 255, 255, 255);
             }
-            SDL_RenderDrawPoint(this->m_Renderer, j, i);
+            SDL_Rect rect = {j * 3, i * 3, 3, 3};
+            SDL_RenderFillRect(this->m_Renderer, &rect);
         }
     }
     SDL_RenderPresent(this->m_Renderer);

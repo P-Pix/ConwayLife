@@ -7,16 +7,14 @@
 
 int main(int argc, char *argv[]) {
     Game game(200, 200);
-    Window window("Game", 50, 50, 200, 200);
+    Window window("Game of life", 50, 50, 600, 600);
 
     unsigned long long i = 0;
     while (!game.allDead() && i < 1000) {
         game.update();
         window.update(game.getMatrix());
         i++;
-        // attendre 1/60 seconde
-        //std::this_thread::sleep_for(std::chrono::milliseconds(16));
-        //game.print();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1 / 24));
     }
 
     return EXIT_SUCCESS;
