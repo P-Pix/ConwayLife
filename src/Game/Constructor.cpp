@@ -60,7 +60,14 @@ void Game::update(void) {
     }
     for (size_t i = 1; i < this->m_Height - 1; i++) {
         for (size_t j = 1; j < this->m_Width - 1; j++) {
-            int neighbors = this->m_Matrix[i - 1][j - 1] + this->m_Matrix[i - 1][j] + this->m_Matrix[i - 1][j + 1] + this->m_Matrix[i][j - 1] + this->m_Matrix[i][j + 1] + this->m_Matrix[i + 1][j - 1] + this->m_Matrix[i + 1][j] + this->m_Matrix[i + 1][j + 1];
+            int neighbors = this->m_Matrix[i - 1][j - 1]
+                + this->m_Matrix[i - 1][j]
+                + this->m_Matrix[i - 1][j + 1]
+                + this->m_Matrix[i][j - 1]
+                + this->m_Matrix[i][j + 1]
+                + this->m_Matrix[i + 1][j - 1]
+                + this->m_Matrix[i + 1][j]
+                + this->m_Matrix[i + 1][j + 1];
             if (this->m_Matrix[i][j]) {
                 if (neighbors == 2 || neighbors == 3) {
                     tmp[i][j] = true;
